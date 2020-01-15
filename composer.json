@@ -1,0 +1,41 @@
+{
+    "name": "elephantsgroup/eg-laravel-params",
+    "description": "Simple flexible public usage params package for Laravel",
+    "keywords": ["laravel", "params"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jalal Jaberi",
+            "email": "j_jaberi@yahoo.com",
+            "homepage": "http://elephantsgroup.com/"
+        }
+    ],
+    "require": {
+        "laravel/laravel": "^6.8",
+        "laravel/helpers": "^1.1",
+        "spatie/laravel-permission": "^3.5"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "ElephantsGroup\\Params\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ElephantsGroup\\Tests\\Params\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ElephantsGroup\\Params\\ParamsServiceProvider"
+            ],
+            "aliases": {
+                "EGParams": "ElephantsGroup\\Params\\Facades\\Params"
+            }
+        }
+    }
+}

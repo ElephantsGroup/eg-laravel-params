@@ -1,2 +1,2 @@
 # eg-laravel-params
-Simple flexible public usage parameters
+Simple flexible public usage params package for Laravel

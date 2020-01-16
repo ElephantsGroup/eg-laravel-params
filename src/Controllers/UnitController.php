@@ -4,7 +4,7 @@ namespace ElephantsGroup\Params\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use ElephantsGroup\Params\Unit;
+use ElephantsGroup\Params\Models\Unit;
 
 class UnitController extends Controller
 {

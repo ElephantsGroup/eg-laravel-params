@@ -21,6 +21,11 @@
                 @method('PUT')
                 <input name="name" class="form-control" value="{{ $parameter->name }}" />
                 <textarea name="description" class="form-control">{{ $parameter->description }}</textarea>
+                <select name="unit" class="form-control">
+                    @foreach ($units as $unit)
+                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                    @endforeach
+                </select>
                 <button class="btn btn-primary" type="submit">Update</button>
             </form>
         </div>

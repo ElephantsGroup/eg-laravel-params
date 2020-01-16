@@ -4,8 +4,8 @@ namespace ElephantsGroup\Params\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use ElephantsGroup\Params\Parameter;
-use ElephantsGroup\Params\Unit;
+use ElephantsGroup\Params\Models\Parameter;
+use ElephantsGroup\Params\Models\Unit;
 
 class ParameterController extends Controller
 {
@@ -80,7 +80,8 @@ class ParameterController extends Controller
     public function edit($id, Request $request)
     {
         $parameter = Parameter::findOrFail($id);
-        return view('params::parameter.edit', ['parameter' => $parameter]);
+        $units = Unit::orderBy('order')->get();
+        return view('params::parameter.edit', ['parameter' => $parameter, 'units' => $units]);
     }
 
     /**
@@ -95,7 +96,7 @@ class ParameterController extends Controller
         $parameter = Parameter::findOrFail($id);
         $parameter->name = $request->name;
         $parameter->description = $request->description;
-        $parameter->unit = $request->unit;
+        $parameter->unit_id = $request->unit;
         $message = $parameter->save() ? 'Success!' : 'Failed!';
         return redirect()->back()->withInput($request->all())->with('message', $message);
     }

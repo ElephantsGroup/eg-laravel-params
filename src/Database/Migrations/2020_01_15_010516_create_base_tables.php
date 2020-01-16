@@ -13,7 +13,7 @@ class CreateBaseTables extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('unit') || Schema::hasTable('parameter'))
+        if (Schema::hasTable('unit') || Schema::hasTable('parameter') || Schema::hasTable('value'))
             return false;
         Schema::create('unit', function (Blueprint $table) {
             $table->increments('id');
@@ -23,7 +23,7 @@ class CreateBaseTables extends Migration
             $table->timestamps();
         });
         Schema::create('parameter', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->unsignedInteger('unit_id');
@@ -31,6 +31,15 @@ class CreateBaseTables extends Migration
             $table->tinyInteger('status')->index()->defaultValue(0);
             $table->timestamps();
             $table->foreign('unit_id')->references('id')->on('unit');
+        });
+        Schema::create('value', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedInteger('parameter_id');
+            $table->float('value');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->timestamps();
+            $table->foreign('parameter_id')->references('id')->on('parameter');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -41,7 +50,8 @@ class CreateBaseTables extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('value');
         Schema::dropIfExists('parameter');
-        Schema::dropIfExists('task');
+        Schema::dropIfExists('unit');
     }
 }

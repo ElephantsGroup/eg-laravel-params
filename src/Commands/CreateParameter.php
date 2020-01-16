@@ -3,8 +3,8 @@
 namespace ElephantsGroup\Params\Commands;
 
 use Illuminate\Console\Command;
-use ElephantsGroup\Params\Parameter;
-use ElephantsGroup\Params\Unit;
+use ElephantsGroup\Params\Models\Parameter;
+use ElephantsGroup\Params\Models\Unit;
 
 class CreateParameter extends Command
 {

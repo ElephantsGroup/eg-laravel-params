@@ -8,5 +8,7 @@ Route::group(['middleware' => ['web', 'role:params-admin']], function () {
     Route::get('params/parameter/{id}/enable', 'ElephantsGroup\Params\Controllers\ParameterController@enable');
     Route::get('params/parameter/{id}/disable', 'ElephantsGroup\Params\Controllers\ParameterController@disable');
     Route::resource('params/parameter', 'ElephantsGroup\Params\Controllers\ParameterController');
+
+    Route::resource('params/value', 'ElephantsGroup\Params\Controllers\ValueController');
 });
 

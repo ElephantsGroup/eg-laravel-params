@@ -6,16 +6,18 @@ use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class Unit extends Model
+class ActiveTemplate extends Model
 {
-    protected $table = 'unit';
-    protected $attributes = [
-        'order' => 0,
-    ];
+    protected $table = 'active_template';
 
     public function __construct()
     {
         parent::__construct();
         $this->user_id = Auth::user()->id;
+    }
+
+    public function template()
+    {
+        return $this->belongsTo('ElephantsGroup\Params\Models\Template');
     }
 }

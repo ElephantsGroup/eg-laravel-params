@@ -6,12 +6,12 @@ use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class Parameter extends Model
+class Template extends Model
 {
     public const STATUS_DISABLED = 0;
     public const STATUS_ENABLED = 1;
 
-    protected $table = 'parameter';
+    protected $table = 'template';
 
     protected $attributes = [
         'status' => self::STATUS_DISABLED,

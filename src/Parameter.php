@@ -7,28 +7,33 @@ use Illuminate\Database\Eloquent\Model;
 
 class Parameter extends Model
 {
-    public const _STATUS_DISABLED = 0;
-    public const _STATUS_ENABLED = 1;
+    public const STATUS_DISABLED = 0;
+    public const STATUS_ENABLED = 1;
 
     protected $table = 'parameter';
 
+    protected $attributes = [
+        'status' => self::STATUS_DISABLED,
+        'order' => 0,
+    ];
+
     public function enabled() : bool
     {
-        return $this->status === self::_STATUS_ENABLED;
+        return $this->status === self::STATUS_ENABLED;
     }
 
     public function disabled() : bool
     {
-        return $this->status === self::_STATUS_DISABLED;
+        return $this->status === self::STATUS_DISABLED;
     }
 
     public function enable() : void
     {
-        $this->status = self::_STATUS_ENABLED;
+        $this->status = self::STATUS_ENABLED;
     }
 
     public function disable() : void
     {
-        $this->status = self::_STATUS_DISABLED;
+        $this->status = self::STATUS_DISABLED;
     }
 }

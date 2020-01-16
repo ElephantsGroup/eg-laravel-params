@@ -19,6 +19,11 @@
                 @csrf
                 <input name="name" class="form-control" />
                 <textarea name="description" class="form-control"></textarea>
+                <select name="unit" class="form-control">
+                    @foreach ($units as $unit)
+                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                    @endforeach
+                </select>
                 <button class="btn btn-primary" type="submit">Create</button>
             </form>
         </div>

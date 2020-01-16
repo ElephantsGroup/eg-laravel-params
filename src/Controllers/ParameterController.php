@@ -5,6 +5,7 @@ namespace ElephantsGroup\Params\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use ElephantsGroup\Params\Parameter;
+use ElephantsGroup\Params\Unit;
 
 class ParameterController extends Controller
 {
@@ -24,9 +25,9 @@ class ParameterController extends Controller
         if ('all' === $show)
             $parameters = Parameter::all();
         else if ('enabled' === $show)
-            $parameters = Parameter::all()->where('status', Parameter::_STATUS_ENABLED);
+            $parameters = Parameter::all()->where('status', Parameter::STATUS_ENABLED);
         else
-            $parameters = Parameter::all()->where('status', Parameter::_STATUS_DISABLED);
+            $parameters = Parameter::all()->where('status', Parameter::STATUS_DISABLED);
         return view('params::parameter.list', ['parameters' => $parameters]);
     }
 
@@ -37,7 +38,8 @@ class ParameterController extends Controller
      */
     public function create()
     {
-        return view('params::parameter.new');
+        $units = Unit::orderBy('order')->get();
+        return view('params::parameter.new', ['units' => $units]);
     }
 
     /**
@@ -51,8 +53,8 @@ class ParameterController extends Controller
         $parameter = new Parameter;
         $parameter->name = $request->name;
         $parameter->description = $request->description;
-        $parameter->status = ($request->enabled ? Parameter::_STATUS_ENABLED : Parameter::_STATUS_DISABLED);
-        $parameter->unit = $request->unit;
+        $parameter->status = ($request->enabled ? Parameter::STATUS_ENABLED : Parameter::STATUS_DISABLED);
+        $parameter->unit_id = $request->unit;
         $message = $parameter->save() ? 'Success!' : 'Failed!';
         return redirect()->back()->withInput($request->all())->with('message', $message);
     }

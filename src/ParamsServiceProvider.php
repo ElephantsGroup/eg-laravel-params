@@ -18,6 +18,7 @@ class ParamsServiceProvider extends ServiceProvider
         {
             $this->commands([
                 Commands\CreateParameter::class,
+                Commands\InitParameter::class,
             ]);
         }   
     }

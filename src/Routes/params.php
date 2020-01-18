@@ -3,6 +3,8 @@
 use ElephantsGroup\Params\Controllers;
 
 Route::group(['middleware' => ['web', 'role:params-admin']], function () {
+    Route::resource('params/snapshot', 'ElephantsGroup\Params\Controllers\SnapshotController')->only(['index', 'show', 'store']);
+
     Route::resource('params/unit', 'ElephantsGroup\Params\Controllers\UnitController');
 
     Route::get('params/parameter/{id}/enable', 'ElephantsGroup\Params\Controllers\ParameterController@enable');

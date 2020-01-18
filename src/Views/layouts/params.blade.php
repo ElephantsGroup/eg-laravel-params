@@ -10,8 +10,11 @@
             <a class="btn btn-secondary" role="button" href="{{ url('params/template') }}">Templates</a>
         </div>
         <div class="btn-group mr-1 float-left" role="group" aria-label="">
-        <a class="btn btn-secondary" role="button" href="{{ url('params/active-template') }}">Active Template</a>
-        <a class="btn btn-secondary" role="button" href="{{ url('params/active-parameter') }}">Active Parameters</a>
+            <a class="btn btn-secondary" role="button" href="{{ url('params/active-template') }}">Active Template</a>
+            <a class="btn btn-secondary" role="button" href="{{ url('params/active-parameter') }}">Active Parameters</a>
+        </div>
+        <div class="btn-group mr-1 float-left" role="group" aria-label="">
+            <a class="btn btn-secondary" role="button" href="{{ url('params/snapshot') }}">Snapshot</a>
         </div>
     </div>
 

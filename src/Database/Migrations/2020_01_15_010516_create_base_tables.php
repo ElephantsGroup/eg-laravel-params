@@ -74,6 +74,13 @@ class CreateBaseTables extends Migration
             $table->foreign('template_id')->references('id')->on('template');
             $table->foreign('user_id')->references('id')->on('users');
         });
+        Schema::create('template_snapshot', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('content');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
@@ -83,6 +90,7 @@ class CreateBaseTables extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('template_snapshot');
         Schema::dropIfExists('active_parameter');
         Schema::dropIfExists('active_template');
         Schema::dropIfExists('template');

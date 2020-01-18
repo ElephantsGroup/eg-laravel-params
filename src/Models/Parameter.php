@@ -53,4 +53,9 @@ class Parameter extends Model
     {
         $this->status = self::STATUS_DISABLED;
     }
+
+    public function currentValue()
+    {
+        return $this->hasMany('ElephantsGroup\Params\Models\Value')->latest();
+    }
 }

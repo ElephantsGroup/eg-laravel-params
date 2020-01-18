@@ -21,7 +21,18 @@
                 <a class="btn btn-info float-right" href="{{ url('params/parameter/' . $parameter->id) }}">View</a>
             </div>
         </div>
-        <div class="card-body"><p>description: {{ $parameter->description }}</p></div>
+        <div class="card-body">
+            <p>{{ __('Description')}}: {{ $parameter->description }}</p>
+            <p>{{ __('Unit') }} : <a href="{{ url('params/unit/' . $parameter->unit->id) }}">{{ $parameter->unit->name }}</a></p>
+            <p>
+                {{ __('Values') }}:
+                <ul>
+                    @foreach ($parameter->values as $value)
+                    <li><a href="{{ url('params/value/' . $value->id) }}">{{ $value->value }}</a></li>
+                    @endforeach
+                </ul>
+            </p>
+        </div>
     </div>
     @endforeach
 @endsection

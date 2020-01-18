@@ -8,6 +8,8 @@
                 <a class="btn btn-info float-right" href="{{ url('params/active-template') }}">List</a>
             </div>
         </div>
-        <div class="card-body"><p></p></div>
+        <div class="card-body">
+            <p>{{ __('Template') }}: <a href="{{ url('params/template/' . $activeTemplate->template->id) }}">{{ $activeTemplate->template->name }}</a></p>
+        </div>
     </div>
 @endsection

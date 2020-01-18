@@ -18,4 +18,9 @@ class Value extends Model
         parent::__construct();
         $this->user_id = Auth::user()->id;
     }
+
+    public function parameter()
+    {
+        return $this->belongsTo('ElephantsGroup\Params\Models\Parameter');
+    }
 }

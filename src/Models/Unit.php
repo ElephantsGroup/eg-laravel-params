@@ -18,4 +18,9 @@ class Unit extends Model
         parent::__construct();
         $this->user_id = Auth::user()->id;
     }
+
+    public function parameters()
+    {
+        return $this->hasMany('ElephantsGroup\Params\Models\Parameter');
+    }
 }

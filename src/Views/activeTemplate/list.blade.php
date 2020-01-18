@@ -10,7 +10,9 @@
                 <a class="btn btn-info float-right" href="{{ url('params/active-template/' . $activeTemplate->id) }}">View</a>
             </div>
         </div>
-        <div class="card-body"><p>Template: {{ $activeTemplate->template->name }}</p></div>
+        <div class="card-body">
+            <p>{{ __('Template') }}: <a href="{{ url('params/template/' . $activeTemplate->template->id) }}">{{ $activeTemplate->template->name }}</a></p>
+        </div>
     </div>
     @endforeach
 @endsection

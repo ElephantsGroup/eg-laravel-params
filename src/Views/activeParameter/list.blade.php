@@ -11,8 +11,9 @@
             </div>
         </div>
         <div class="card-body">
-            <p>Parameter: {{ $activeParameter->parameter->name }}</p>
-            <p>Template: {{ $activeParameter->template->name }}</p>
+            <p>{{ __('placeholder') }}: {{ $activeParameter->placeholder  }}</p>
+            <p>{{ __('Parameter') }}: <a href="{{ url('params/parameter/' . $activeParameter->parameter->id) }}">{{ $activeParameter->parameter->name }}</a></p>
+            <p>{{ __('Template') }}: <a href="{{ url('params/template/' . $activeParameter->template->id) }}">{{ $activeParameter->template->name }}</a></p>
         </div>
     </div>
     @endforeach

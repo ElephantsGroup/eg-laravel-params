@@ -8,6 +8,9 @@
                 <a class="btn btn-info float-right" href="{{ url('params/value') }}">List</a>
             </div>
         </div>
-        <div class="card-body"><p>{{ $value->value }}</p></div>
+        <div class="card-body">
+            <p>{{ __('Value') }}: {{ $value->value }}</p>
+            <p>{{ __('Parameter') }} : <a href="{{ url('params/parameter/' . $value->parameter->id) }}">{{ $value->parameter->name }}</a></p>
+        </div>
     </div>
 @endsection

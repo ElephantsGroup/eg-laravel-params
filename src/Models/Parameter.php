@@ -24,6 +24,16 @@ class Parameter extends Model
         $this->user_id = Auth::user()->id;
     }
 
+    public function values()
+    {
+        return $this->hasMany('ElephantsGroup\Params\Models\Value');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo('ElephantsGroup\Params\Models\Unit');
+    }
+
     public function enabled() : bool
     {
         return $this->status === self::STATUS_ENABLED;

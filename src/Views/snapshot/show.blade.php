@@ -8,6 +8,11 @@
                 <a class="btn btn-info float-right" href="{{ url('params/snapshot') }}">List</a>
             </div>
         </div>
-        <div class="card-body"><p>Content: {{ $snapshot->content }}</p></div>
+        <div class="card-body">
+            <p>Content: {{ $snapshot->content }}</p>
+            <div class="container border border-secondary">
+                {!! html_entity_decode(nl2br(e($snapshot->content))) !!}
+            </div>
+        </div>
     </div>
 @endsection

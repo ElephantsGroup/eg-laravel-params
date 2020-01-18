@@ -1,7 +1,16 @@
 @extends('params::layouts.params')
 
 @section('params-content')
-    <a class="btn btn-primary" href="{{ url('params/template/create') }}">@lang('params::all.New')</a>
+    <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group float-left" role="group" aria-label="">
+            <a class="btn btn-primary float-left" href="{{ url('params/template/create') }}">@lang('params::all.New')</a>
+        </div>
+        <div class="btn-group ml-auto float-right" role="group" aria-label="">
+            <a class="btn btn-default float-right{{ request()->get('show') === 'all' ? ' disabled' : '' }}" href="{{ url('params/template?show=all') }}">@lang('params::all.all')</a>
+            <a class="btn btn-default float-right{{ (!request()->has('show') || request()->get('show') === 'enabled') ? ' disabled' : '' }}" href="{{ url('params/template?show=enabled') }}">@lang('params::all.enabled')</a>
+            <a class="btn btn-default float-right{{ request()->get('show') === 'disabled' ? ' disabled' : '' }}" href="{{ url('params/template?show=disabled') }}">@lang('params::all.disabled')</a>
+        </div>
+    </div>
     @foreach ($templates as $template)
     <div class="card mb-2 mt-2">
         <div class="card-header">

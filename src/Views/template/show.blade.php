@@ -19,6 +19,11 @@
                 <a class="btn btn-info float-right" href="{{ url('params/template') }}">List</a>
             </div>
         </div>
-        <div class="card-body"><p>Content: {{ $template->content }}</p></div>
+        <div class="card-body">
+            <p>Content: {{ $template->content }}</p>
+            <div class="container border border-secondary">
+                {!! html_entity_decode(nl2br(e($template->content))) !!}
+            </div>
+        </div>
     </div>
 @endsection

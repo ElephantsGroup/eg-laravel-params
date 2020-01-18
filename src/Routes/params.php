@@ -18,5 +18,7 @@ Route::group(['middleware' => ['web', 'role:params-admin']], function () {
     Route::resource('params/active-template', 'ElephantsGroup\Params\Controllers\ActiveTemplateController')->only(['index', 'show', 'create', 'store']);
 
     Route::resource('params/active-parameter', 'ElephantsGroup\Params\Controllers\ActiveParameterController')->only(['index', 'show', 'create', 'store']);
+
+    Route::get('params', 'ElephantsGroup\Params\Controllers\IndexController@index');
 });
 

@@ -1,12 +1,6 @@
-@extends('layouts.app')
+@extends('params::layouts.params')
 
-@section('content')
-<div class="container">
-    @if (session('message'))
-    <div class="alert alert-success" role="alert">
-        {{ session('message') }}
-    </div>
-    @endif
+@section('params-content')
     <a class="btn btn-primary" href="{{ url('params/active-parameter/create') }}">@lang('params::all.New')</a>
     @foreach ($activeParameters as $activeParameter)
     <div class="card mb-2 mt-2">
@@ -22,5 +16,4 @@
         </div>
     </div>
     @endforeach
-</div>
 @endsection

@@ -1,12 +1,6 @@
-@extends('layouts.app')
+@extends('params::layouts.params')
 
-@section('content')
-<div class="container">
-    @if (session('message'))
-    <div class="alert alert-success" role="alert">
-        {{ session('message') }}
-    </div>
-    @endif
+@section('params-content')
     <div class="card">
         <div class="card-header">
             <h3 style="float: left">Create new active parameter</h3>
@@ -32,5 +26,4 @@
             </form>
         </div>
     </div>
-</div>
 @endsection

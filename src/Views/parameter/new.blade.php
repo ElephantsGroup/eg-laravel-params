@@ -15,7 +15,7 @@
                 <textarea name="description" class="form-control"></textarea>
                 <select name="unit" class="form-control">
                     @foreach ($units as $unit)
-                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                    <option value="{{ $unit->id }}"{{ request()->get('unit_id') == $unit->id ? ' selected="selected"' : '' }}>{{ $unit->name }}</option>
                     @endforeach
                 </select>
                 <button class="btn btn-primary" type="submit">Create</button>

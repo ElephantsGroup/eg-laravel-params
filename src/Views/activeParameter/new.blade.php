@@ -14,12 +14,13 @@
                 <input name="placeholder" class="form-control" />
                 <select name="parameter" class="form-control">
                     @foreach ($parameters as $parameter)
-                    <option value="{{ $parameter->id }}">{{ $parameter->name }}</option>
+                    <option value="{{ $parameter->id }}"@if (request()->get('parameter_id') == $parameter->id) ' selected="selected"' @endif>{{ $parameter->name }}</option>
                     @endforeach
                 </select>
                 <select name="template" class="form-control">
+                    <option value="0">Select template ...</option>
                     @foreach ($templates as $template)
-                    <option value="{{ $template->id }}">{{ $template->name }}</option>
+                    <option value="{{ $template->id }}"@if (request()->get('template_id') == $template->id) ' selected="selected"' @endif>{{ $template->name }}</option>
                     @endforeach
                 </select>
                 <button class="btn btn-primary" type="submit">Create</button>

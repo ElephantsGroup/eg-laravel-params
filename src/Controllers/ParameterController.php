@@ -4,8 +4,11 @@ namespace ElephantsGroup\Params\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use ElephantsGroup\Params\Models\Parameter;
 use ElephantsGroup\Params\Models\Unit;
+use ElephantsGroup\Params\Models\ActiveParameter;
+use ElephantsGroup\Params\Models\Template;
 
 class ParameterController extends Controller
 {
@@ -68,7 +71,26 @@ class ParameterController extends Controller
     public function show($id)
     {
         $parameter = Parameter::findOrFail($id);
-        return view('params::parameter.show', ['parameter' => $parameter]);
+        $activations = [];
+
+        $activeParameters = ActiveParameter::select('placeholder', 'template_id', DB::raw('MAX(created_at)'))
+            ->groupBy('parameter_id', 'placeholder', 'template_id')
+            ->having('parameter_id', '=', $id)
+            ->whereNotNull('template_id')
+            ->get();
+        foreach ($activeParameters as $activeParameter)
+            $activations[$activeParameter->placeholder] = Template::findOrFail($activeParameter->template_id);
+
+        $activeParameters = ActiveParameter::select('placeholder', DB::raw('MAX(created_at)'))
+            ->groupBy('parameter_id', 'placeholder')
+            ->having('parameter_id', '=', $id)
+            ->whereNull('template_id')
+            ->get();
+        foreach ($activeParameters as $activeParameter)
+            if (!isset($activations[$activeParameter->placeholder]))
+                $activations[$activeParameter->placeholder] = NULL;
+ 
+        return view('params::parameter.show', ['parameter' => $parameter, 'activations' => $activations]);
     }
 
     /**

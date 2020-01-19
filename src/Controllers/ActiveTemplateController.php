@@ -16,7 +16,7 @@ class ActiveTemplateController extends Controller
      */
     public function index(Request $request)
     {
-        $activeTemplates = ActiveTemplate::all();
+        $activeTemplates = ActiveTemplate::latest()->get();
         return view('params::activeTemplate.list', ['activeTemplates' => $activeTemplates]);
     }
 

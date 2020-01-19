@@ -22,7 +22,7 @@ class SnapshotController extends Controller
      */
     public function index(Request $request)
     {
-        $snapshots = TemplateSnapshot::all();
+        $snapshots = TemplateSnapshot::latest()->get();
         return view('params::snapshot.list', ['snapshots' => $snapshots]);
     }
 

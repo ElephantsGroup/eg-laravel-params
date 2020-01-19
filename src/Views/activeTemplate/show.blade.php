@@ -10,6 +10,9 @@
         </div>
         <div class="card-body">
             <p>{{ __('Template') }}: <a href="{{ url('params/template/' . $activeTemplate->template->id) }}">{{ $activeTemplate->template->name }}</a></p>
+            <div class="container border border-secondary">
+                {!! html_entity_decode(nl2br(e($activeTemplate->template->content))) !!}
+            </div>
         </div>
     </div>
 @endsection

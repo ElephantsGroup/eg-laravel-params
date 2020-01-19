@@ -12,18 +12,25 @@
         </div>
     </div>
     @foreach ($templates as $template)
-    <div class="card mb-2 mt-2">
+    <div class="card mb-2 mt-2{{ ($activeTemplate && $activeTemplate->template_id === $template->id) ? ' selected-card' : ''}}">
         <div class="card-header">
             <h3 class="float-left"><a href="{{ url('params/template/' . $template->id) }}">#{{ $template->id }} {{ $template->name }}</a></h3>
+            @if (!$activeTemplate || $activeTemplate->template_id != $template->id)
+            <form class="btn-group mr-1 float-right" role="group" aria-label="" action="{{ url('params/active-template') }}" method="POST">
+                @csrf
+                <input type="hidden" name="template" value="{{ $template->id }}" />
+                <button class="btn btn-primary" role="button" type="submit">@lang('params::all.Activate')</button>
+            </form>
+            @endif
             <form class="btn-group mr-1 float-right" role="group" aria-label="" action="{{ url('params/template/' . $template->id) }}" method="POST">
-                <a class="btn btn-primary" role="button" href="{{ url('params/template/' . $template->id . '/edit') }}">Edit</a>
+                <a class="btn btn-primary" role="button" href="{{ url('params/template/' . $template->id . '/edit') }}">@lang('params::all.Edit')</a>
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-primary" role="button" type="submit">Delete</button>
+                <button class="btn btn-primary" role="button" type="submit">@lang('params::all.Delete')</button>
                 @if ($template->enabled())
-                <a class="btn btn-primary" role="button" href="{{ url('params/template/' . $template->id . '/disable') }}">Disable</a>
+                <a class="btn btn-primary" role="button" href="{{ url('params/template/' . $template->id . '/disable') }}">@lang('params::all.Disable')</a>
                 @else
-                <a class="btn btn-primary" role="button" href="{{ url('params/template/' . $template->id . '/enable') }}">Enable</a>
+                <a class="btn btn-primary" role="button" href="{{ url('params/template/' . $template->id . '/enable') }}">@lang('params::all.Enable')</a>
                 @endif
             </form>
             <div class="btn-group mr-2 float-right" role="group">

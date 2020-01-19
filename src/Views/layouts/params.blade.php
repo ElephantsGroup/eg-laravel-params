@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+<link href="{{ asset('vendor/params/css/params.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="container">
     <div class="btn-toolbar mb-4" role="toolbar" aria-label="Toolbar with button groups">
@@ -20,4 +24,8 @@
 
     @yield('params-content')
 </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('vendor/params/js/params.js') }}" defer></script>
 @endsection

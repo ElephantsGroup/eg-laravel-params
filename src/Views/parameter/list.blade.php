@@ -36,7 +36,8 @@
             <p>
                 {{ __('Values') }}:
                 <ul>
-                    @foreach ($parameter->values as $value)
+                    <li><a href="{{ url('params/value/create?parameter_id=' . $parameter->id) }}">{{ __('+') }}</a></li>
+                    @foreach ($parameter->latestValues as $value)
                     <li><a href="{{ url('params/value/' . $value->id) }}">{{ $value->value }}</a></li>
                     @endforeach
                 </ul>

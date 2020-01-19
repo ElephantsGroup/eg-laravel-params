@@ -24,6 +24,7 @@
                     @foreach ($unit->parameters as $parameter)
                     <li><a href="{{ url('params/parameter/' .  $parameter->id) }}">{{ $parameter->name }}</a></li>
                     @endforeach
+                    <li><a href="{{ url('params/parameter/create?unit_id=' . $unit->id) }}">{{ __('+') }}</a></li>
                 <ul>
             </p>
         </div>

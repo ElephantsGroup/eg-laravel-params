@@ -29,9 +29,19 @@ class Parameter extends Model
         return $this->hasMany('ElephantsGroup\Params\Models\Value');
     }
 
+    public function latestValues()
+    {
+        return $this->hasMany('ElephantsGroup\Params\Models\Value')->latest();
+    }
+
     public function unit()
     {
         return $this->belongsTo('ElephantsGroup\Params\Models\Unit');
+    }
+
+    public function activations()
+    {
+        return $this->hasMany('ElephantsGroup\Params\Models\ActiveParameter');
     }
 
     public function enabled() : bool

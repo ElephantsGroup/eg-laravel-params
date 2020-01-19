@@ -24,6 +24,15 @@
             <div class="container border border-secondary">
                 {!! html_entity_decode(nl2br(e($template->content))) !!}
             </div>
+            <p>
+                {{ __('Activations') }}:
+                <ul>
+                    <li><a href="{{ url('params/active-parameter/create?template_id=' . $template->id) }}">{{ __('+') }}</a></li>
+                    @foreach ($activations as $placeholder => $parameter)
+                    <li>{{ __('Placeholder') }} {{ $placeholder }} {{ __('for parameter') }} <a href="{{ url('params/parameter/' . $parameter->id) }}">{{ $parameter->name }}</a></li>
+                    @endforeach
+                </ul>
+            </p>
         </div>
     </div>
 @endsection

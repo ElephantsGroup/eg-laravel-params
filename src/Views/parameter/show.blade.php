@@ -25,8 +25,22 @@
             <p>
                 {{ __('Values') }}:
                 <ul>
-                    @foreach ($parameter->values as $value)
+                    <li><a href="{{ url('params/value/create?parameter_id=' . $parameter->id) }}">{{ __('+') }}</a></li>
+                    @foreach ($parameter->latestValues as $value)
                     <li><a href="{{ url('params/value/' . $value->id) }}">{{ $value->value }}</a></li>
+                    @endforeach
+                </ul>
+            </p>
+            <p>
+                {{ __('Activations') }}:
+                <ul>
+                    <li><a href="{{ url('params/active-parameter/create?parameter_id=' . $parameter->id) }}">{{ __('+') }}</a></li>
+                    @foreach ($activations as $placeholder => $template)
+                    @if ($template)
+                    <li>{{ __('Placeholder') }} {{ $placeholder }} {{ __('on template') }} <a href="{{ url('params/template/' . $template->id) }}">{{ $template->name }}</a></li>
+                    @else
+                    <li>{{ __('Placeholder') }} {{ $placeholder }} {{ __('on all templates') }}</li>
+                    @endif
                     @endforeach
                 </ul>
             </p>

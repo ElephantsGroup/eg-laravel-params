@@ -14,7 +14,7 @@
                 <input name="value" class="form-control" />
                 <select name="parameter" class="form-control">
                     @foreach ($parameters as $parameter)
-                    <option value="{{ $parameter->id }}">{{ $parameter->name }}</option>
+                    <option value="{{ $parameter->id }}"{{ request()->get('parameter_id') == $parameter->id ? ' selected="selected"' : '' }}>{{ $parameter->name }}</option>
                     @endforeach
                 </select>
                 <button class="btn btn-primary" type="submit">Create</button>

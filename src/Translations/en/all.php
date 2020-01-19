@@ -6,4 +6,9 @@ return [
     'all' => 'all',
     'enabled' => 'enabled',
     'disabled' => 'disabled',
+    'Activate' => 'Activate',
+    'Enable' => 'Enable',
+    'Disable' => 'Disable',
+    'Edit' => 'Edit',
+    'Delete' => 'Delete',
 ];

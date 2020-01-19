@@ -4,8 +4,11 @@ namespace ElephantsGroup\Params\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use ElephantsGroup\Params\Models\Template;
 use ElephantsGroup\Params\Models\Parameter;
+use ElephantsGroup\Params\Models\ActiveParameter;
+use ElephantsGroup\Params\Models\ActiveTemplate;
 
 class TemplateController extends Controller
 {
@@ -28,7 +31,10 @@ class TemplateController extends Controller
             $templates = Template::all()->where('status', Template::STATUS_ENABLED);
         else
             $templates = Template::all()->where('status', Template::STATUS_DISABLED);
-        return view('params::template.list', ['templates' => $templates]);
+
+        $activeTemplate = ActiveTemplate::latest()->first();
+
+        return view('params::template.list', ['templates' => $templates, 'activeTemplate' => $activeTemplate]);
     }
 
     /**
@@ -66,7 +72,24 @@ class TemplateController extends Controller
     public function show($id)
     {
         $template = Template::findOrFail($id);
-        return view('params::template.show', ['template' => $template]);
+        $activations = [];
+
+        $activeParameters = ActiveParameter::select('placeholder', 'parameter_id', DB::raw('MAX(created_at)'))
+            ->groupBy('parameter_id', 'placeholder')
+            ->where('template_id', '=', $id)
+            ->get();
+        foreach ($activeParameters as $activeParameter)
+            $activations[$activeParameter->placeholder] = Parameter::findOrFail($activeParameter->parameter_id);
+
+        $activeParameters = ActiveParameter::select('placeholder', 'parameter_id', DB::raw('MAX(created_at)'))
+            ->groupBy('parameter_id', 'placeholder')
+            ->whereNull('template_id')
+            ->get();
+        foreach ($activeParameters as $activeParameter)
+            if (!isset($activations[$activeParameter->placeholder]))
+                $activations[$activeParameter->placeholder] = Parameter::findOrFail($activeParameter->parameter_id);
+
+        return view('params::template.show', ['template' => $template, 'activations' => $activations]);
     }
 
     /**

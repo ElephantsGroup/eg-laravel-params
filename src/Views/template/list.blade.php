@@ -34,10 +34,10 @@
                 @endif
             </form>
             <div class="btn-group mr-2 float-right" role="group">
-                <a class="btn btn-info float-right" href="{{ url('params/template/' . $template->id) }}">View</a>
+                <a class="btn btn-info float-right" href="{{ url('params/template/' . $template->id) }}">@lang('params::all.View')</a>
             </div>
         </div>
-        <div class="card-body"><p>Content: {{ $template->content }}</p></div>
+        <div class="card-body"><p>@lang('params::all.Content'): {{ $template->content }}</p></div>
     </div>
     @endforeach
 @endsection

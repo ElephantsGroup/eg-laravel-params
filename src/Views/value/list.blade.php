@@ -7,12 +7,12 @@
         <div class="card-header">
             <h3 class="float-left"><a href="{{ url('params/value/' . $value->id) }}">#{{ $value->id }}</a></h3>
             <div class="btn-group mr-2 float-right" role="group">
-                <a class="btn btn-info float-right" href="{{ url('params/value/' . $value->id) }}">View</a>
+                <a class="btn btn-info float-right" href="{{ url('params/value/' . $value->id) }}">@lang('params::all.View')</a>
             </div>
         </div>
         <div class="card-body">
-            <p>{{ __('Value') }}: {{ $value->value }}</p>
-            <p>{{ __('Parameter') }} : <a href="{{ url('params/parameter/' . $value->parameter->id) }}">{{ $value->parameter->name }}</a></p>
+            <p>@lang('params::all.Value'): {{ $value->value }}</p>
+            <p>@lang('params::all.Parameter'): <a href="{{ url('params/parameter/' . $value->parameter->id) }}">{{ $value->parameter->name }}</a></p>
         </div>
     </div>
     @endforeach

@@ -3,9 +3,9 @@
 @section('params-content')
     <div class="card">
         <div class="card-header">
-            <h3 style="float: left">Create new active parameter</h3>
+            <h3 style="float: left">@lang('params::all.Create new active parameter')</h3>
             <div class="btn-group mr-2 float-right" role="group">
-                <a class="btn btn-info float-right" href="{{ url('params/active-parameter') }}">List</a>
+                <a class="btn btn-info float-right" href="{{ url('params/active-parameter') }}">@lang('params::all.List')</a>
             </div>
         </div>
         <div class="card-body">
@@ -18,12 +18,12 @@
                     @endforeach
                 </select>
                 <select name="template" class="form-control">
-                    <option value="0">Select template ...</option>
+                    <option value="0">@lang('params::all.Select template ...')</option>
                     @foreach ($templates as $template)
                     <option value="{{ $template->id }}"@if (request()->get('template_id') == $template->id) ' selected="selected"' @endif>{{ $template->name }}</option>
                     @endforeach
                 </select>
-                <button class="btn btn-primary" type="submit">Create</button>
+                <button class="btn btn-primary" type="submit">@lang('params::all.Create')</button>
             </form>
         </div>
     </div>

@@ -5,11 +5,11 @@
         <div class="card-header">
             <h3 style="float: left">#{{ $activeTemplate->id }}</h3>
             <div class="btn-group mr-2 float-right" role="group">
-                <a class="btn btn-info float-right" href="{{ url('params/active-template') }}">List</a>
+                <a class="btn btn-info float-right" href="{{ url('params/active-template') }}">@lang('params::all.List')</a>
             </div>
         </div>
         <div class="card-body">
-            <p>{{ __('Template') }}: <a href="{{ url('params/template/' . $activeTemplate->template->id) }}">{{ $activeTemplate->template->name }}</a></p>
+            <p>@lang('params::all.Template'): <a href="{{ url('params/template/' . $activeTemplate->template->id) }}">{{ $activeTemplate->template->name }}</a></p>
             <div class="container border border-secondary">
                 {!! html_entity_decode(nl2br(e($activeTemplate->template->content))) !!}
             </div>

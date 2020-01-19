@@ -1,3 +1,62 @@
+body[dir="rtl"] .btn-group > .btn:first-child, body[dir="rtl"] .btn-group > .btn-group:first-child > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+body[dir="rtl"] .btn-group > .btn:last-child, body[dir="rtl"] .btn-group > .btn-group:last-child > .btn {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+body[dir="rtl"] .btn-group > .btn:only-child, body[dir="rtl"] .btn-group > .btn-group:only-child > .btn {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+body[dir="rtl"] .form-btn-group:not(:only-child) {
+    float: right;
+}
+
+body[dir="ltr"] .form-btn-group:not(:only-child) {
+    float: left;
+}
+
+body[dir="rtl"] .form-switch-group:not(:only-child) {
+    float: left;
+    margin-right: auto;
+}
+
+body[dir="ltr"] .form-switch-group:not(:only-child) {
+    float: right;
+    margin-left: auto;
+}
+
+body[dir="rtl"] .card-header h3 {
+    float: right;
+}
+
+body[dir="ltr"] .card-header h3 {
+    float: left;
+}
+
+body[dir="rtl"] .card-header .btn-group {
+    float: left;
+}
+
+body[dir="ltr"] .card-header .btn-group {
+    float: right;
+}
+
 .selected-card {
     border: 2px solid green;
+}
+
+body[dir="rtl"] .card-body {
+    text-align: right;
 }

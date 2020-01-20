@@ -60,3 +60,8 @@ body[dir="ltr"] .card-header .btn-group {
 body[dir="rtl"] .card-body {
     text-align: right;
 }
+
+body[dir="rtl"] textarea.params-rtl {
+    text-align: left;
+    direction: ltr;
+}

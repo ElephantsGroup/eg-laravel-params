@@ -14,7 +14,7 @@
                 @csrf
                 @method('PUT')
                 <input name="name" class="form-control" value="{{ $template->name }}" />
-                <textarea name="content" class="form-control">{{ $template->content }}</textarea>
+                <textarea name="content" class="form-control params-rtl">{{ $template->content }}</textarea>
                 <button class="btn btn-primary" type="submit">@lang('params::all.Update')</button>
             </form>
         </div>

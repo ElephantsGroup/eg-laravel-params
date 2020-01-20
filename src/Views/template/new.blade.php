@@ -12,7 +12,7 @@
             <form action="{{ url('params/template') }}" method="POST">
                 @csrf
                 <input name="name" class="form-control" />
-                <textarea name="content" class="form-control"></textarea>
+                <textarea name="content" class="form-control params-rtl"></textarea>
                 <button class="btn btn-primary" type="submit">@lang('params::all.Create')</button>
             </form>
         </div>

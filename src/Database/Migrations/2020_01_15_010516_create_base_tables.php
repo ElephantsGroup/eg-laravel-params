@@ -20,7 +20,7 @@ class CreateBaseTables extends Migration
             $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->tinyInteger('order')->index()->defaultValue(0);
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -31,7 +31,7 @@ class CreateBaseTables extends Migration
             $table->unsignedInteger('unit_id');
             $table->tinyInteger('order')->index()->defaultValue(0);
             $table->tinyInteger('status')->index()->defaultValue(0);
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->foreign('unit_id')->references('id')->on('unit');
             $table->foreign('user_id')->references('id')->on('users');
@@ -40,7 +40,7 @@ class CreateBaseTables extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('parameter_id');
             $table->float('value');
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->foreign('parameter_id')->references('id')->on('parameter');
             $table->foreign('user_id')->references('id')->on('users');
@@ -48,17 +48,17 @@ class CreateBaseTables extends Migration
         Schema::create('template', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('content');
+            $table->string('content', '10240');
             $table->tinyInteger('order')->index()->defaultValue(0);
             $table->tinyInteger('status')->index()->defaultValue(0);
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
         Schema::create('active_template', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('template_id');
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->foreign('template_id')->references('id')->on('template');
             $table->foreign('user_id')->references('id')->on('users');
@@ -68,7 +68,7 @@ class CreateBaseTables extends Migration
             $table->string('placeholder');
             $table->unsignedInteger('parameter_id');
             $table->unsignedInteger('template_id')->nullable();
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->foreign('parameter_id')->references('id')->on('parameter');
             $table->foreign('template_id')->references('id')->on('template');
@@ -76,8 +76,8 @@ class CreateBaseTables extends Migration
         });
         Schema::create('template_snapshot', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('content');
-            $table->unsignedInteger('user_id')->nullable();
+            $table->string('content', 10240);
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

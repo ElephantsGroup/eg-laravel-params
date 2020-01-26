@@ -39,7 +39,7 @@ class CreateBaseTables extends Migration
         Schema::create('value', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('parameter_id');
-            $table->float('value');
+            $table->float('value', 16, 4);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->foreign('parameter_id')->references('id')->on('parameter');

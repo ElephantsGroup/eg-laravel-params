@@ -65,3 +65,9 @@ body[dir="rtl"] textarea.params-rtl {
     text-align: left;
     direction: ltr;
 }
+
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}

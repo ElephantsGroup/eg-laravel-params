@@ -110,9 +110,15 @@ class ParameterController extends Controller
                 if ($count == 0)
                     $stats[] = [ 'date' => $today->format('M d'), 'value' => null ];
                 else
-                $stats[] = [ 'date' => $today->format('M d'), 'value' => $sum / $count ];
-                $count = $sum = 0;
+                    $stats[] = [ 'date' => $today->format('M d'), 'value' => $sum / $count ];
                 $today->subDay();
+                while (count($stats) < 7 && !$value->created_at->isSameDay($today))
+                {
+                    $stats[] = [ 'date' => $today->format('M d'), 'value' => null ];
+                    $today->subDay();
+                }
+                $count = 1;
+                $sum = $value->value;
             }
         }
         if (count($stats) < 7)
@@ -123,7 +129,7 @@ class ParameterController extends Controller
                 $stats[] = [ 'date' => $today->format('M d'), 'value' => $sum / $count ];
             for ($i = count($stats); $i < 7; $i++)
             {
-                $today = $today->subDay();
+                $today->subDay();
                 $stats[] = [ 'date' => $today->format('M d'), 'value' => null ];
             }
         }

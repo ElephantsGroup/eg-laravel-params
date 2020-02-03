@@ -26,6 +26,15 @@ class SnapshotController extends Controller
         return view('params::snapshot.list', ['snapshots' => $snapshots]);
     }
 
+    // TODO: move to a global helper (perhaps params facade)
+    public function en_to_fa($number)
+    {
+        $en = array("0","1","2","3","4","5","6","7","8","9", "٬");
+        $fa = array("۰","۱","۲","۳","۴","۵","۶","۷","۸","۹", "،");
+    
+        return str_replace($en, $fa, $number);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,6 +43,9 @@ class SnapshotController extends Controller
      */
     public function store(Request $request)
     {
+        $locale = config('app.locale');
+        if ('fa-IR' == $locale)
+            setlocale(LC_MONETARY, 'fa_IR');
         $snapshot = new TemplateSnapshot;
         $activeTemplate = ActiveTemplate::latest()->first();
         if ($activeTemplate)
@@ -49,7 +61,15 @@ class SnapshotController extends Controller
         {
             $parameter = Parameter::findOrFail($activeParameter->parameter_id);
             if (count($parameter->currentValue) > 0)
-                $snapshot->content = str_replace($activeParameter->placeholder, $parameter->currentValue[0]->value, $snapshot->content);
+            {
+                $currentValue = $parameter->currentValue[0]->value;
+                $decimal = strlen(substr(strrchr($currentValue, '.'), 1));
+                $snapshot->content = str_replace(
+                    $activeParameter->placeholder,
+                    'fa-IR' == $locale ? $this->en_to_fa(money_format("%!.{$decimal}i", $currentValue)) : $currentValue,
+                    $snapshot->content
+                );
+            }
         }
 
         $activeParameters = ActiveParameter::select('placeholder', 'parameter_id', DB::raw('MAX(created_at)'))
@@ -60,7 +80,15 @@ class SnapshotController extends Controller
         {
             $parameter = Parameter::findOrFail($activeParameter->parameter_id);
             if (count($parameter->currentValue) > 0)
-                $snapshot->content = str_replace($activeParameter->placeholder, $parameter->currentValue[0]->value, $snapshot->content);
+            {
+                $currentValue = $parameter->currentValue[0]->value;
+                $decimal = strlen(substr(strrchr($currentValue, '.'), 1));
+                $snapshot->content = str_replace(
+                    $activeParameter->placeholder,
+                    'fa-IR' == $locale ? $this->en_to_fa(money_format("%!.{$decimal}i", $currentValue)) : $currentValue,
+                    $snapshot->content
+                );
+            }
         }
 
         $message = $snapshot->save() ? 'Success!' : 'Failed!';

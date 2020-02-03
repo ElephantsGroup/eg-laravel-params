@@ -23,15 +23,6 @@
             <p>@lang('params::all.Description'): {{ $parameter->description }}</p>
             <p>@lang('params::all.Unit'): <a href="{{ url('params/unit/' . $parameter->unit->id) }}">{{ $parameter->unit->name }}</a></p>
             <p>
-                @lang('params::all.Values'):
-                <ul>
-                    <li><a href="{{ url('params/value/create?parameter_id=' . $parameter->id) }}">+</a></li>
-                    @foreach ($parameter->latestValues as $value)
-                    <li><a href="{{ url('params/value/' . $value->id) }}">{{ $value->value }}</a></li>
-                    @endforeach
-                </ul>
-            </p>
-            <p>
                 @lang('params::all.Activations'):
                 <ul>
                     <li><a href="{{ url('params/active-parameter/create?parameter_id=' . $parameter->id) }}">+</a></li>
@@ -44,6 +35,65 @@
                     @endforeach
                 </ul>
             </p>
+            <p>
+                @lang('params::all.Values'):
+                <ul>
+                    <li><a href="{{ url('params/value/create?parameter_id=' . $parameter->id) }}">+</a></li>
+                    @foreach ($parameter->latestValues as $value)
+                    <li><a href="{{ url('params/value/' . $value->id) }}">{{ $value->value }}</a></li>
+                    @endforeach
+                </ul>
+            </p>
+            <canvas id="canvas"></canvas>
         </div>
     </div>
+	<script>
+		var config = {
+			type: 'line',
+			data: {
+				labels: [
+                    @foreach ($stats as $stat)
+                    '{{ $stat['date'] }}',
+                    @endforeach
+                ],
+				datasets: [{
+					label: '',
+					backgroundColor: "blue",
+					borderColor: "blue",
+					data: [
+                        @foreach ($stats as $stat)
+                        {{ $stat['value'] }},
+                        @endforeach
+                    ],
+					fill: false,
+				}]
+			},
+			options: {
+				responsive: true,
+				tooltips: {
+					mode: 'point',
+					intersect: true,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Date'
+						}
+					}],
+					yAxes: [{ display: false }]
+				}
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+		};
+	</script>
 @endsection

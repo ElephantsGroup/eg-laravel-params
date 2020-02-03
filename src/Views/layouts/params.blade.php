@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+<link href="{{ asset('vendor/params/css/Chart.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendor/params/css/params.css') }}" rel="stylesheet">
 @endsection
 
@@ -37,5 +38,6 @@
 @endsection
 
 @section('js')
+<script src="{{ asset('vendor/params/js/Chart.min.js') }}" defer></script>
 <script src="{{ asset('vendor/params/js/params.js') }}" defer></script>
 @endsection

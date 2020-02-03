@@ -3,6 +3,7 @@
 namespace ElephantsGroup\Params\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use ElephantsGroup\Params\Models\Parameter;
@@ -89,8 +90,49 @@ class ParameterController extends Controller
         foreach ($activeParameters as $activeParameter)
             if (!isset($activations[$activeParameter->placeholder]))
                 $activations[$activeParameter->placeholder] = NULL;
+
+        $today = Carbon\Carbon::today();
+        $stats = [];
+
+        $count = 0;
+        $sum = 0;
+        foreach ($parameter->latestValues as $value)
+        {
+            if (count($stats) == 7)
+                break;
+            if ($value->created_at->isSameDay($today))
+            {
+                $count++;
+                $sum += $value->value;
+            }
+            else
+            {
+                if ($count == 0)
+                    $stats[] = [ 'date' => $today->format('M d'), 'value' => null ];
+                else
+                $stats[] = [ 'date' => $today->format('M d'), 'value' => $sum / $count ];
+                $count = $sum = 0;
+                $today->subDay();
+            }
+        }
+        if (count($stats) < 7)
+        {
+            if ($count == 0)
+                $stats[] = [ 'date' => $today->format('M d'), 'value' => null ];
+            else
+                $stats[] = [ 'date' => $today->format('M d'), 'value' => $sum / $count ];
+            for ($i = count($stats); $i < 7; $i++)
+            {
+                $today = $today->subDay();
+                $stats[] = [ 'date' => $today->format('M d'), 'value' => null ];
+            }
+        }
  
-        return view('params::parameter.show', ['parameter' => $parameter, 'activations' => $activations]);
+        return view('params::parameter.show', [
+            'parameter' => $parameter,
+            'activations' => $activations,
+            'stats' => array_reverse($stats)
+        ]);
     }
 
     /**

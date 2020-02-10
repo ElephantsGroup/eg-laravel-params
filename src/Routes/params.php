@@ -24,3 +24,8 @@ Route::group(['middleware' => ['web', 'role:params-admin']], function () {
     Route::get('params', 'ElephantsGroup\Params\Controllers\IndexController@index');
 });
 
+Route::group(['middleware' => ['web', 'role:params-reporter|params-admin']], function () {
+    Route::resource('params/snapshot', 'ElephantsGroup\Params\Controllers\SnapshotController')->only(['index', 'show', 'store']);
+    Route::resource('params/value', 'ElephantsGroup\Params\Controllers\ValueController')->only(['index', 'show', 'create', 'store']);
+    Route::get('params', 'ElephantsGroup\Params\Controllers\IndexController@index');
+});

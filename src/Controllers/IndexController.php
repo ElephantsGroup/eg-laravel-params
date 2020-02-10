@@ -13,6 +13,8 @@ class IndexController extends Controller
      */
     public function index(Request $request)
     {
+        /*if (auth()->user()->hasRole('params-reporter'))
+            return redirect('/params/value');*/
         return view('params::index');
     }
 }

@@ -7,21 +7,21 @@ use ElephantsGroup\Params\Models\Parameter;
 use ElephantsGroup\Params\Models\Unit;
 use Spatie\Permission\Models\Role;
 
-class InitParameter extends Command
+class AssignParameter extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'params:init {userId}';
+    protected $signature = 'params:assign {--userId=} {--roleName=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Initialize package data';
+    protected $description = 'Assign role to user';
 
     /**
      * Create a new command instance.
@@ -40,15 +40,12 @@ class InitParameter extends Command
      */
     public function handle()
     {
-        $admin_role = Role::where(['name' => 'params-admin'])->first();
-        if (!$admin_role)
-            $admin_role = Role::create(['name' => 'params-admin']);
+        $roleName = $this->option('roleName');
+        $userId = $this->option('userId');
 
-        $reporter_role = Role::where(['name' => 'params-reporter'])->first();
-        if (!$reporter_role)
-            $reporter_role = Role::create(['name' => 'params-reporter']);
+        $role = Role::where(['name' => $roleName])->firstOrFail();
+        $user = \App\User::findOrFail($userId);
 
-        $user = \App\User::findOrFail($this->argument('userId'));
-        $user->assignRole($admin_role);
+        $user->assignRole($role);
     }
 }

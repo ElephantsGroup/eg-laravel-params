@@ -7,6 +7,7 @@
 
 @section('content')
 <div class="container">
+    @if (!Auth::guest() && Auth::user()->hasRole('params-admin'))
     <div class="btn-toolbar mb-4 params-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group mr-1" role="group" aria-label="">
             <a class="btn btn-secondary pr-0 pl-1" role="button" href="#"></a>
@@ -32,6 +33,14 @@
             <a class="btn btn-danger level1-spacer pl-0 pr-1" role="button" href="#"></a>
         </div>
     </div>
+    @elseif (!Auth::guest() && Auth::user()->hasRole('params-reporter'))
+    <div class="btn-toolbar mb-4 params-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-1" role="group" aria-label="">
+            <a class="btn btn-secondary" role="button" href="{{ url('params/value') }}">@lang('params::all.Values')</a>
+            <a class="btn btn-secondary" role="button" href="{{ url('params/snapshot') }}">@lang('params::all.Snapshots')</a>
+        </div>
+    </div>
+    @endif
 
     @yield('params-content')
 </div>

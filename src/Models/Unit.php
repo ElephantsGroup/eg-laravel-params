@@ -23,4 +23,9 @@ class Unit extends Model
     {
         return $this->hasMany('ElephantsGroup\Params\Models\Parameter');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

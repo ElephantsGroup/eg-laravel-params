@@ -15,6 +15,8 @@
             </div>
         </div>
         <div class="card-body">
+            <span class="tag">{{ $unit->user->name }}</span>
+            <hr />
             <p>@lang('params::all.Description'): {{ $unit->description }}</p>
             <p>
                 @lang('params::all.Parameters'):

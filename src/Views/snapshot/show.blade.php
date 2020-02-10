@@ -9,6 +9,8 @@
             </div>
         </div>
         <div class="card-body">
+            <span class="tag">{{ $snapshot->user->name }}</span>
+            <hr />
             <p>@lang('params::all.Content'): {{ $snapshot->content }}</p>
             <div class="container border border-secondary">
                 {!! html_entity_decode(nl2br(e($snapshot->content))) !!}

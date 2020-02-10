@@ -20,6 +20,8 @@
             </div>
         </div>
         <div class="card-body">
+            <span class="tag">{{ $template->user->name }}</span>
+            <hr />
             <p>@lang('params::all.Content'): {{ $template->content }}</p>
             <div class="container border border-secondary">
                 {!! html_entity_decode(nl2br(e($template->content))) !!}

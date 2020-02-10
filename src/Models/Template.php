@@ -24,6 +24,11 @@ class Template extends Model
         $this->user_id = Auth::user()->id;
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function enabled() : bool
     {
         return $this->status === self::STATUS_ENABLED;

@@ -23,4 +23,9 @@ class Value extends Model
     {
         return $this->belongsTo('ElephantsGroup\Params\Models\Parameter');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

@@ -9,6 +9,8 @@
             </div>
         </div>
         <div class="card-body">
+            <span class="tag">{{ $value->user->name }}</span>
+            <hr />
             <p>@lang('params::all.Value'): {{ $value->value }}</p>
             <p>@lang('params::all.Parameter'): <a href="{{ url('params/parameter/' . $value->parameter->id) }}">{{ $value->parameter->name }}</a></p>
         </div>

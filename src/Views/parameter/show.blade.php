@@ -20,6 +20,8 @@
             </div>
         </div>
         <div class="card-body">
+            <span class="tag">{{ $parameter->user->name }}</span>
+            <hr />
             <p>@lang('params::all.Description'): {{ $parameter->description }}</p>
             <p>@lang('params::all.Unit'): <a href="{{ url('params/unit/' . $parameter->unit->id) }}">{{ $parameter->unit->name }}</a></p>
             <p>

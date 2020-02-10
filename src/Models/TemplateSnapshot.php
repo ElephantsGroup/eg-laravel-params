@@ -15,4 +15,9 @@ class TemplateSnapshot extends Model
         parent::__construct();
         $this->user_id = Auth::user()->id;
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

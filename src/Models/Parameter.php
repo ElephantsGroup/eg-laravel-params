@@ -44,6 +44,11 @@ class Parameter extends Model
         return $this->hasMany('ElephantsGroup\Params\Models\ActiveParameter');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function enabled() : bool
     {
         return $this->status === self::STATUS_ENABLED;

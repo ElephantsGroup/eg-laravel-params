@@ -20,4 +20,9 @@ class ActiveTemplate extends Model
     {
         return $this->belongsTo('ElephantsGroup\Params\Models\Template');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

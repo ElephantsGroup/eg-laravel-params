@@ -71,3 +71,10 @@ body[dir="rtl"] textarea.params-rtl {
     transition: none;
     display: none;
 }
+
+.tag {
+    background-color: green;
+    color: white;
+    padding: 3px 10px;
+    font-weight: 600;
+}

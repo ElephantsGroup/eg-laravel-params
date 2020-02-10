@@ -27,8 +27,8 @@
         </div>
         <div class="btn-group mr-1" role="group" aria-label="">
             <a class="btn btn-danger level1-spacer pl-1 pr-0" role="button" href="#"></a>
-            <button class="btn btn-danger level1-button" type="button" data-target=".level2-menu" data-toggle="collapse" aria-expanded="false" onClick="ToggleExpendMenu(this)">+</button>
-            <button class="btn btn-danger level2-button d-none" type="button" data-target=".level3-menu" data-toggle="collapse" aria-expanded="false" onClick="ToggleMoreExpendMenu(this)">++</button>
+            <button class="btn btn-danger level1-button" id="expand-btn" type="button" data-target=".level2-menu" data-toggle="collapse" aria-expanded="false" onClick="ToggleExpendMenu(this)">+</button>
+            <button class="btn btn-danger level2-button d-none" id="more-expand-btn" type="button" data-target=".level3-menu" data-toggle="collapse" aria-expanded="false" onClick="ToggleMoreExpendMenu(this)">++</button>
             <a class="btn btn-danger level1-spacer pl-0 pr-1" role="button" href="#"></a>
         </div>
     </div>

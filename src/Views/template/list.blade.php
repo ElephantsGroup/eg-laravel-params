@@ -40,4 +40,5 @@
         <div class="card-body"><p>@lang('params::all.Content'): {{ $template->content }}</p></div>
     </div>
     @endforeach
+    {{ $templates->links() }}
 @endsection

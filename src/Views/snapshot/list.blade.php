@@ -20,4 +20,5 @@
         <div class="card-body"><p>@lang('params::all.Content'): {{ $snapshot->content }}</p></div>
     </div>
     @endforeach
+    {{ $snapshots->links() }}
 @endsection

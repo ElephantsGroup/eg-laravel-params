@@ -19,4 +19,5 @@
         </div>
     </div>
     @endforeach
+    {{ $activeTemplates->links() }}
 @endsection

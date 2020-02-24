@@ -34,4 +34,5 @@
         </div>
     </div>
     @endforeach
+    {{ $units->links() }}
 @endsection

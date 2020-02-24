@@ -31,7 +31,7 @@ class Parameter extends Model
 
     public function latestValues()
     {
-        return $this->hasMany('ElephantsGroup\Params\Models\Value')->latest();
+        return $this->hasMany('ElephantsGroup\Params\Models\Value')->latest()->limit(10);
     }
 
     public function unit()

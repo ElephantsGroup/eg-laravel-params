@@ -27,11 +27,11 @@ class ParameterController extends Controller
         if ($showQuery && (in_array($showQuery, ['enabled', 'disabled', 'all'])))
             $show = $showQuery;
         if ('all' === $show)
-            $parameters = Parameter::all();
+            $parameters = Parameter::paginate(10);
         else if ('enabled' === $show)
-            $parameters = Parameter::all()->where('status', Parameter::STATUS_ENABLED);
+            $parameters = Parameter::where('status', Parameter::STATUS_ENABLED)->paginate(10);
         else
-            $parameters = Parameter::all()->where('status', Parameter::STATUS_DISABLED);
+            $parameters = Parameter::where('status', Parameter::STATUS_DISABLED)->paginate(10);
         return view('params::parameter.list', ['parameters' => $parameters]);
     }
 

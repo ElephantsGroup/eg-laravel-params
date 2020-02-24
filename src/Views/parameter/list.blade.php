@@ -45,4 +45,5 @@
         </div>
     </div>
     @endforeach
+    {{ $psarameters->links() }}
 @endsection

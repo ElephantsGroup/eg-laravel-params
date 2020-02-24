@@ -26,11 +26,11 @@ class TemplateController extends Controller
         if ($showQuery && (in_array($showQuery, ['enabled', 'disabled', 'all'])))
             $show = $showQuery;
         if ('all' === $show)
-            $templates = Template::all();
+            $templates = Template::paginate(10);
         else if ('enabled' === $show)
-            $templates = Template::all()->where('status', Template::STATUS_ENABLED);
+            $templates = Template::where('status', Template::STATUS_ENABLED)->paginate(10);
         else
-            $templates = Template::all()->where('status', Template::STATUS_DISABLED);
+            $templates = Template::where('status', Template::STATUS_DISABLED)->paginate(10);
 
         $activeTemplate = ActiveTemplate::latest()->first();
 

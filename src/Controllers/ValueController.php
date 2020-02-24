@@ -16,7 +16,7 @@ class ValueController extends Controller
      */
     public function index(Request $request)
     {
-        $values = Value::latest()->get();
+        $values = Value::latest()->paginate(10);
         return view('params::value.list', ['values' => $values]);
     }
 

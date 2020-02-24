@@ -17,7 +17,7 @@ class ActiveParameterController extends Controller
      */
     public function index(Request $request)
     {
-        $activeParameters = ActiveParameter::latest()->get();
+        $activeParameters = ActiveParameter::latest()->paginate(10);
         return view('params::activeParameter.list', ['activeParameters' => $activeParameters]);
     }
 

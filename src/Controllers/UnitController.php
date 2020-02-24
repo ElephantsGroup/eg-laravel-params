@@ -15,7 +15,7 @@ class UnitController extends Controller
      */
     public function index(Request $request)
     {
-        $units = Unit::all();
+        $units = Unit::paginate(10);
         return view('params::unit.list', ['units' => $units]);
     }
 

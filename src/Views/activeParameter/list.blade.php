@@ -21,4 +21,5 @@
         </div>
     </div>
     @endforeach
+    {{ $activeParameters->links() }}
 @endsection

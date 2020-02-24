@@ -134,10 +134,35 @@ class ParameterController extends Controller
             }
         }
  
+        $interpolated = $stats;
+        $firstNotNullIndex = -1;
+        for ($i = 0; $i < count($interpolated); $i++)
+        {
+            if ($interpolated[$i]['value'] === NULL)
+            {
+                if ($firstNotNullIndex < $i)
+                {
+                    $firstNotNullIndex = $i+1;
+                    while ($firstNotNullIndex < count($interpolated) && $interpolated[$firstNotNullIndex]['value'] === NULL)
+                        $firstNotNullIndex++;
+                }
+                if ($firstNotNullIndex === count($interpolated))
+                    break;
+                if ($i === 0)
+                {
+                    $i = $firstNotNullIndex + 1;
+                    continue;
+                }
+                else
+                    $interpolated[$i]['value'] = $interpolated[$i-1]['value'] + ($interpolated[$firstNotNullIndex]['value'] - $interpolated[$i-1]['value'])/($firstNotNullIndex - $i + 1);
+            }
+        }
+
         return view('params::parameter.show', [
             'parameter' => $parameter,
             'activations' => $activations,
-            'stats' => array_reverse($stats)
+            'stats' => array_reverse($stats),
+            'interpolated' => array_reverse($interpolated)
         ]);
     }
 

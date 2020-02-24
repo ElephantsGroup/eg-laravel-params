@@ -68,6 +68,16 @@
                         @endforeach
                     ],
 					fill: false,
+				},{
+					label: '',
+					backgroundColor: "red",
+					borderColor: "red",
+					data: [
+                        @foreach ($interpolated as $stat)
+                        {{ $stat['value'] }},
+                        @endforeach
+                    ],
+					fill: false,
 				}]
 			},
 			options: {

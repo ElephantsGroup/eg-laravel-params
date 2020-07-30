@@ -45,5 +45,5 @@
         </div>
     </div>
     @endforeach
-    {{ $psarameters->links() }}
+    {{ $parameters->links() }}
 @endsection
